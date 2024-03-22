@@ -177,6 +177,7 @@ def save(self):
         CURSOR.execute(sql, (self.name, self.job_title,
                              self.department_id, self.id))
         CONN.commit()
+        type(self).all[self.id] = self
 
     @classmethod
     def create(cls, name, job_title, department_id):
@@ -394,6 +395,7 @@ class Department:
         """
         CURSOR.execute(sql, (self.name, self.location, self.id))
         CONN.commit()
+        type(self).all[self.id] = self
 
     def delete(self):
         """Delete the table row corresponding to the current Department instance,
